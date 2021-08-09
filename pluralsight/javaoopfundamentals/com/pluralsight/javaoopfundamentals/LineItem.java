@@ -14,19 +14,20 @@ public class LineItem {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
+//
+//    public int getQuantity() {
+//        return quantity;
+//    }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+//    public void setQuantity(int quantity) {
+//        this.quantity = quantity;
+//    }
 
     public int getPrice() {
+
         return product.getPrice() * quantity;
     }
 
@@ -39,3 +40,6 @@ public class LineItem {
                 '}';
     }
 }
+
+
+// Encapsulation - purpose if to isolate changes to a single component
