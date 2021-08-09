@@ -10,26 +10,19 @@ public class LineItem {
         this.quantity = quantity;
     }
 
+    public LineItem(LineItem li) {this(li.product, li.quantity);}
+
     public Product getProduct() {
         return product;
     }
 
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
-//
-//    public int getQuantity() {
-//        return quantity;
-//    }
+    public void setProduct(Product product) { this.product = product; }
 
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
+    public int getQuantity() { return quantity; }
 
-    public int getPrice() {
+    public void setQuantity(int quantity) { this.quantity = quantity; }
 
-        return product.getPrice() * quantity;
-    }
+    public int getPrice() { return product.getPrice() * quantity; }
 
     @Override
     public String toString() {

@@ -12,6 +12,10 @@ public class Order {
 
     }
 
+    public ShoppingCart getCart(){
+        return cart;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
