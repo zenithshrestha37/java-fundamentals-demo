@@ -15,7 +15,7 @@ public class CreditCard {
         if (Math.random() > 0.3){
             return Optional.of(new Payment(this, value, UUID.randomUUID()));
         } else {
-            return Optional.empty();
+            return Optional.empty(); // return null.
         }
     }
 

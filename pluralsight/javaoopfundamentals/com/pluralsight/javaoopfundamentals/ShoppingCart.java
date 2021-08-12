@@ -14,6 +14,7 @@ public class ShoppingCart {
     }
 
     public void addLineItem(Product prod, int quantity){
+
         this.addLineItem(new LineItem(prod, quantity));
     }
 

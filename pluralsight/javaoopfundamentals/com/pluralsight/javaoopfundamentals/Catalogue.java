@@ -18,7 +18,6 @@ public class Catalogue {
     );
 */
 
-    // Java 8 and earlier
     public static Map<String,Product> productMap = Map.of(
 
             "Electric Toothbrush", new Product("Electric Toothbrush", 3000, PHYSICAL, 400),
@@ -27,6 +26,7 @@ public class Catalogue {
             );
 
     public static Product getProduct(String productName) {
+
         return productMap.get(productName);
     }
 }

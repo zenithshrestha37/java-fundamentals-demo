@@ -22,7 +22,9 @@ public class LineItem {
 
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
-    public int getPrice() { return product.getPrice() * quantity; }
+    public int getPrice() {
+        return product.getPrice() * quantity;
+    }
 
     @Override
     public String toString() {

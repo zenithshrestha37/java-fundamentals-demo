@@ -1,6 +1,6 @@
 package com.pluralsight.javaoopfundamentals;
 
-public enum ProductType {
+enum ProductType {
 
     DIGITAL(0), PHYSICAL(Catalogue.SHIPPING_RATE);
 

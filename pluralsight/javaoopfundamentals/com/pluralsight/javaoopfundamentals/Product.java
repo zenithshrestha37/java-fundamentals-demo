@@ -23,6 +23,13 @@ public class Product {
 
     public int getPrice() {
         int shippingCost = type.getShippingCost(weight);
+
+//        int shippingCost;
+//        if(type == PHYSICAL){
+//            shippingCost = weight * SHIPPING_RATE;
+//        } else {
+//            shippingCost = 0;
+//        }
         return (int) (price * (100 - discount) / 100.00) + shippingCost;
     }
 
