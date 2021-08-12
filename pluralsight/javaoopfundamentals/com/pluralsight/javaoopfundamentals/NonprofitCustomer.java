@@ -3,7 +3,7 @@ package com.pluralsight.javaoopfundamentals;
 public class NonprofitCustomer extends Customer{
 
     public NonprofitCustomer(String name, long ccNumber) {
-        super(name, ccNumber);
+        super(name);
     }
 
         @Override

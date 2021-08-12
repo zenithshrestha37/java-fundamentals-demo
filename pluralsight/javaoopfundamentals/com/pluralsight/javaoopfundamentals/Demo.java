@@ -11,16 +11,16 @@ import static com.pluralsight.javaoopfundamentals.BusinessCustomer.BusinessSize.
 public class Demo {
     public static void main(String[] args) {
 
-        Customer janeDoe = new Customer("Jane Doe", 542093615183044L);
-        Customer acme = new BusinessCustomer("Acme Products", 455642663443553L, LARGE);
-        Customer globex = new BusinessCustomer("Globex Corp", 5463503666563574L, LARGE);
-        Customer saveTheWorld = new NonprofitCustomer("Save the World", 5381428244287646L);
-
-        List<Customer> customers = List.of(janeDoe, acme, globex, saveTheWorld);
-
-        Map<Integer, Long> discountMap = customers.stream()
-                .collect(Collectors.groupingBy(Customer::calculateDiscount, Collectors.counting()));
-        System.out.println(discountMap);
+//        Customer janeDoe = new Customer("Jane Doe", 542093615183044L);
+//        Customer acme = new BusinessCustomer("Acme Products", 455642663443553L, LARGE);
+//        Customer globex = new BusinessCustomer("Globex Corp", 5463503666563574L, LARGE);
+//        Customer saveTheWorld = new NonprofitCustomer("Save the World", 5381428244287646L);
+//
+//        List<Customer> customers = List.of(janeDoe, acme, globex, saveTheWorld);
+//
+//        Map<Integer, Long> discountMap = customers.stream()
+//                .collect(Collectors.groupingBy(Customer::calculateDiscount, Collectors.counting()));
+//        System.out.println(discountMap);
 
 //        Map<> discountMap = new HashMap<>();
 //        for (Customer c: customers){
@@ -29,22 +29,25 @@ public class Demo {
 //        System.out.println("discountMap");
 
 
-/*
+
+
 //        // creating new Product objects for every program execution
-//        Product toothbrush = new Product("Electric Toothbrush", 3550);
-//        Product babyAlarm = new Product("Baby Alarm", 4999);
-//*/
-//        // simulating retrieval of Product objects from a database
-//        Product toothbrush = Catalogue.getProduct("Electric Toothbrush");
-//        Product babyAlarm = Catalogue.getProduct("Baby Alarm");
-//        Product warAndPeace = Catalogue.getProduct("War and Peace (e-book)");
-//
-//        ShoppingCart cart = new ShoppingCart();
-//        cart.addLineItem(new LineItem(babyAlarm, 1));
-//        cart.addLineItem(new LineItem(warAndPeace, 1));
-//        LineItem toothbrushes = new LineItem(toothbrush, 2);
-//        cart.addLineItem(toothbrushes);
-//        System.out.println(cart.getTotalCost());
+        Product toothbrush = Catalogue.getProduct("Electric Toothbrush");
+        Product babyAlarm = Catalogue.getProduct("Baby Alarm");
+        Product warAndPeace = Catalogue.getProduct("War and Peace (e-book)");
+
+        ShoppingCart cart = new ShoppingCart();
+        cart.addLineItem(new LineItem(babyAlarm, 1));
+        cart.addLineItem(new LineItem(warAndPeace, 1));
+        LineItem toothbrushes = new LineItem(toothbrush, 2);
+        cart.addLineItem(toothbrushes);
+
+        Customer janeDoe = new Customer("Jane Doe");
+        janeDoe.addPaymentMethod("Jane's Credit Card", new CreditCard(5420793615183044L));
+        janeDoe.addPaymentMethod("Jane's Bank Account", new BankAccount(80_80_80, 00646160));
+
+        Optional<Order> order = janeDoe.checkout(cart, "Jane's Bank Account");
+        System.out.println(order);
 //
 //
 //        Customer johnDoe = new Customer("John Doe", 5420793615183044L);

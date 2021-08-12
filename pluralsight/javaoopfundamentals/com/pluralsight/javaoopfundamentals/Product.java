@@ -1,46 +1,41 @@
 package com.pluralsight.javaoopfundamentals;
 
-import static com.pluralsight.javaoopfundamentals.Catalogue.SHIPPING_RATE;
-import static com.pluralsight.javaoopfundamentals.ProductType.PHYSICAL;
-
-public class Product {
-
-    private final String name;
+public abstract class Product implements Comparable<Product> {
+    private String name;
     private int price;
-    private int discount;
-    private ProductType type;
-    private int weight;
+    private int productDiscount;
 
-
-
-    public Product(String name, int price, ProductType type, int weight) {
+    public Product(String name, int price) {
         this.name = name;
         this.price = price;
-        this.type = type;
-        this.weight = weight;
+    }
 
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
-        int shippingCost = type.getShippingCost(weight);
-
-//        int shippingCost;
-//        if(type == PHYSICAL){
-//            shippingCost = weight * SHIPPING_RATE;
-//        } else {
-//            shippingCost = 0;
-//        }
-        return (int) (price * (100 - discount) / 100.00) + shippingCost;
+        int shippingCost = calculateShippingCost();
+        return Math.round((1 - productDiscount) * price) + shippingCost;
     }
 
+    @Override
+    public int compareTo(Product otherProduct) {
+        return name.compareTo(otherProduct.name);
+    }
+
+    public void setDiscount(int discount) {
+        this.productDiscount = discount;
+    }
 
     @Override
     public String toString() {
-        return "\n" + "Product{" +
+        return "Product{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
-                ", type=" + type +
-                ", weight=" + weight +
+                ", discount=" + productDiscount +
                 '}';
     }
+
+    public abstract int calculateShippingCost();
 }

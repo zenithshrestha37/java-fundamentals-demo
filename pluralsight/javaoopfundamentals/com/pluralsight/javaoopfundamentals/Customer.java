@@ -1,40 +1,43 @@
 package com.pluralsight.javaoopfundamentals;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
-public class Customer {
+public class Customer implements Comparable<Customer> {
 
     private final String name;
-    private CreditCard creditCard;
+    private Map<String, PaymentMethod> paymentMethods = new HashMap<>();
 
-    public Customer(String name, long ccNumber) {
+    public Customer(String name) {
         this.name = name;
-        this.creditCard = new CreditCard(ccNumber);
     }
 
-    public CreditCard getCreditCard(){
-        return creditCard;
+    public void addPaymentMethod(String nickname, PaymentMethod paymentMethod) {
+        paymentMethods.put(nickname, paymentMethod);
     }
 
-    public int calculateDiscount(){
+    public int calculateDiscount() {
         return 0;
     }
 
-    public Optional<Order> checkout (ShoppingCart cart){
-        Optional<Payment> payment = creditCard.mkPayment(cart.getTotalCost());
-        return payment.map(value -> new Order(this, cart, value)); // lambda takes the payment and applies to the order
-        //return payment.isPresent() ? Optional.of(new Order(this, cart, payment.get())) : Optional.empty();
-        /*
-        if the optional is empty, it will throw the exception so we must guard against it with test. we are back to returnin null from the failed operation. so use optional throughout
-         */
+    public Optional<Order> checkout(ShoppingCart cart, String paymentMethodNickname) {
+        Optional<PaymentMethod> paymentMethod =
+                Optional.ofNullable(paymentMethods.get(paymentMethodNickname));
+        Optional<Payment> payment = paymentMethod.flatMap(pm -> pm.mkPayment(cart.getTotalCost()));
+        return payment.map(value -> new Order(this, cart, value));
+    }
 
+    @Override
+    public int compareTo(Customer o) {
+        return name.compareTo(o.name);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
-                ", creditCard=" + creditCard +
+                ", paymentMethods=" + paymentMethods +
                 '}';
     }
 }

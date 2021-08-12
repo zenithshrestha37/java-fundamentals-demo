@@ -3,7 +3,7 @@ package com.pluralsight.javaoopfundamentals;
 import java.util.Optional;
 import java.util.UUID;
 
-public class CreditCard {
+public class CreditCard implements PaymentMethod {
 
     private final long cardNumber;
 
@@ -11,15 +11,14 @@ public class CreditCard {
         this.cardNumber = cardNumber;
     }
 
-    public Optional<Payment> mkPayment(int value){
-        if (Math.random() > 0.3){
+    @Override
+    public Optional<Payment> mkPayment(int value) {
+        if (Math.random() > 0.3) {
             return Optional.of(new Payment(this, value, UUID.randomUUID()));
         } else {
-            return Optional.empty(); // return null.
+            return Optional.empty();
         }
     }
-
-
 
     @Override
     public String toString() {
